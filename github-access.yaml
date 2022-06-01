@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: github-access
+type: Opaque
+data:
+  token: Z2hwX2pMdzVmRHZ5bHQxa1h2czlIWVZPWVg4bjNqRksybDNWbFR1TQ==
