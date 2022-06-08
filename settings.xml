@@ -1,0 +1,85 @@
+<settings>
+
+    <mirrors>
+        <mirror>
+            <id>nexus3-all</id>
+            <name>sabre repo</name>
+            <url>https://gcp.repository.sabre.com/repository/maven-all/</url>
+            <mirrorOf>central,servicemix,jansi.release.m2,open.iona.m2,release.fusesource.org,maven-central,gradle-workaround,sonatype-nexus-snapshots,apache.incubator,servicemix-repo,apache.incubating,ops4j,open.iona.m2-internal,open.iona.m2-internal-snapshot</mirrorOf>
+        </mirror>
+    </mirrors>
+
+	<servers>
+        
+		<server>
+			  <id>archetype</id>
+			  <username>7hvwshn3</username>
+			  <password>hxPeI_0LxJROmQAz75sCld-kl3NpToLti3Rf2vaFGJrW</password>
+		   </server>
+		   <server>
+		  <id>nexus3-all</id>
+            <username>7hvwshn3</username>
+			<password>hxPeI_0LxJROmQAz75sCld-kl3NpToLti3Rf2vaFGJrW</password>
+				 </server>
+        <server>
+            <id>nexus3-releases</id>
+                <username>7hvwshn3</username>
+				<password>hxPeI_0LxJROmQAz75sCld-kl3NpToLti3Rf2vaFGJrW</password>
+        </server>
+        <server>
+            <id>nexus3-snapshots</id>
+                <username>7hvwshn3</username>
+				<password>hxPeI_0LxJROmQAz75sCld-kl3NpToLti3Rf2vaFGJrW</password>
+        </server>
+        <server>
+            <id>nexus3-legacy-releases</id>
+                <username>7hvwshn3</username>
+				<password>hxPeI_0LxJROmQAz75sCld-kl3NpToLti3Rf2vaFGJrW</password>
+        </server>
+        <server>
+            <id>nexus3-legacy-snapshots</id>
+                <username>7hvwshn3</username>
+				<password>hxPeI_0LxJROmQAz75sCld-kl3NpToLti3Rf2vaFGJrW</password>
+        </server>
+			
+    </servers>
+
+    <profiles>
+        <profile>
+            <id>Default Nexus 3 Repo</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <!-- Nexus 3 Repository. Required to fetch the Parent POM-->
+                <repository>
+                    <id>nexus3-all</id>
+                    <name>Sabre All Groups Maven Nexus 3 Repository</name>
+                    <url>https://repository.sabre.com/repository/maven-all</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <checksumPolicy>warn</checksumPolicy>
+                        <updatePolicy>always</updatePolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+		<profile>
+      <id>archetype</id>
+      <repositories>
+         <repository>
+            <id>archetype</id>
+            <url>https://gcp.repository.sabre.com/repository/maven-all/</url>
+         </repository>
+      </repositories>
+   </profile>
+    </profiles>
+<activeProfiles>
+   <activeProfile>archetype</activeProfile>
+</activeProfiles>
+
+</settings>
