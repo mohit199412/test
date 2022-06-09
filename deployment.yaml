@@ -26,7 +26,7 @@ spec:
         app: spring-test-app
     spec:
       containers:
-        - name: spring-test-app 
+        - name: spring-test-app-container
           image: spring-boot-test # Image that will be used to containers in the cluster
           imagePullPolicy: IfNotPresent
           ports:
