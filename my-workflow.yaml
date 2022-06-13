@@ -1,0 +1,68 @@
+# This example demonstrates the use of a git repo as a hard-wired input artifact.
+# The argo repo is cloned to its target destination at '/src' for the main container to consume.
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: my-workflow
+spec:
+  entrypoint: git-clone
+  templates:
+  - name: git-clone
+    steps:
+    - - name: checkout
+        template: checkout
+    - - name: build-and-push-to-registry
+        template: build-and-push-to-registry
+  - name: checkout
+    inputs:
+      artifacts:
+      - name: argo-source
+        path: /src
+        git:
+          repo: https://github.com/mohit199412/test.git
+          #revision: "v2.1.1"
+    container:
+      image: golang:1.10
+      command: [sh, -c]
+      args: ["git status && ls"]
+      workingDir: /src
+
+  - name: build-and-push-to-registry
+    inputs:
+      artifacts:
+        - name: argo-source
+          path: /src
+          git:
+            repo: https://github.com/mohit199412/java-api-docker.git
+    container:
+      image: docker:18.09
+
+      resources:
+        requests:
+          cpu: 100m
+          memory: 100Mi
+        limits:
+          cpu: 400m
+          memory: 800Mi
+      command: [sh, -c]
+      args: [ "until docker ps; do sleep 1; done; cd /src \
+                      && docker build . -t java-api
+                      && docker login  --username=test12345mohit --password=July@1234
+                      && docker tag java-api docker.io/test12345mohit/test:java-api.8
+                       && docker push docker.io/test12345mohit/test:java-api.8" ]
+      workingDir: /src
+      env:
+        - name: DOCKER_HOST
+          value: 127.0.0.1
+    sidecars:
+      - name: docker-in-docker
+        image: docker:18.09-dind
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 400m
+            memory: 800Mi
+        securityContext:
+          privileged: true
