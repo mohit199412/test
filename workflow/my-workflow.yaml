@@ -48,8 +48,8 @@ spec:
       args: [ "until docker ps; do sleep 1; done; cd /src \
                       && docker build . -t java-api
                       && docker login  --username=test12345mohit --password=July@1234
-                      && docker tag java-api docker.io/test12345mohit/test:java-api.8
-                       && docker push docker.io/test12345mohit/test:java-api.8" ]
+                      && docker tag java-api docker.io/test12345mohit/test:java-api.9
+                       && docker push docker.io/test12345mohit/test:java-api.9" ]
       workingDir: /src
       env:
         - name: DOCKER_HOST
