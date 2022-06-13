@@ -11,7 +11,7 @@ spec:
     steps:
     - - name: checkout
         template: checkout
-    - - name: build-and-push-to-registry
+    - - name: build-test-and-push-to-registry
         template: build-and-push-to-registry
   - name: checkout
     inputs:
