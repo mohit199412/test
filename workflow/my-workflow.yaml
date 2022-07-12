@@ -4,6 +4,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
   generateName: my-workflow
+  namespace: argo-events
 spec:
   entrypoint: git-clone
   templates:
